@@ -15,7 +15,7 @@ return (
                   paddingRight:screenSize.horizontalPadding,
                   paddingLeft:screenSize.horizontalPadding}}>
 
-          <h1> {window.location.pathname.substring(1)}</h1>
+          <h1> {window.location.pathname.substring(5)}</h1>
           <br/><br/>
           <h2> Screen Status Values:</h2>
           <br/>

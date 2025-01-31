@@ -34,7 +34,7 @@ function App() {
         setLoadingBook(false);
       });
 
-    axios.get(configs.cover+window.location.pathname.substring(1))
+    axios.get(configs.cover+window.location.pathname.substring(5))
       .then(response => {
         setBgImage(response.data);        
         console.log(bgImage.toString);
