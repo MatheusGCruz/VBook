@@ -24,7 +24,7 @@ function App() {
 
 
   useEffect(() => {
-    axios.get(configs.book+window.location.pathname.substring(1))
+    axios.get(configs.book+window.location.pathname.substring(6))
       .then(response => {
         setBook(response.data); 
         setLoadingBook(false);
@@ -34,7 +34,7 @@ function App() {
         setLoadingBook(false);
       });
 
-    axios.get(configs.cover+window.location.pathname.substring(5))
+    axios.get(configs.cover+window.location.pathname.substring(6))
       .then(response => {
         setBgImage(response.data);        
         console.log(bgImage.toString);
