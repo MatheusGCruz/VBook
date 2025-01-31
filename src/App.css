@@ -1,0 +1,115 @@
+.App {
+  display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.frontCover{
+  background-image: url('./Images/cover.jpg');
+  background-size: 100% 100%;
+  background-color: darkgreen;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.backCover{
+  background-image: url('./Images/cover.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: darkgreen;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.leftPage{
+  background-image: url('./Images/leftPage.jpg');
+  background-size: 100% 100%;
+  background-color: darkgreen;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.rightPage{
+background-image: url('./Images/rightPage.jpg');
+background-size: 100% 100%;
+border-left: 100;
+  border-left-color: black;
+  border-left-width:20;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.draculaCover{
+  background-image: url('');
+  background-size: 100% 100%;
+  border-left: 100;
+    border-left-color: black;
+    border-left-width:20;
+    border-radius: 5%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+.flipPage{
+  background-image: url('./Images/rightPage.jpg');
+  background-size: 100% 100%;
+  background-color: rgb(216, 204, 96);
+  border-radius: 5%;
+  border-color: black;
+}
+
+.innerPage{
+  padding:'30px';
+  display: 'flex';
+  justify-content:'center';
+  align-items:'center';
+  margin:20;
+  font-size:20;
+  text-align:'justify';
+}
+
