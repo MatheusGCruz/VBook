@@ -1,14 +1,4 @@
-import React, {useContext,useEffect, useState} from 'react'
-
 import UseScreenSize from './../Functions/ScreenSize';
-import draculaText from './Dracula';
-import { bookSelect } from './../Functions/BookSelect.js'
-import { BookContext }  from './../Context/BookContext.js'
-import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
-import useConfigs from '../Functions/Config';
-import axios from "axios";
-
-
 
 export function ReturnPages(newBook){
 

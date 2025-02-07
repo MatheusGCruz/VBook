@@ -20,11 +20,10 @@ function App() {
   const [loadingCover, setLoadingCover] = useState(true);
   const configs = useConfigs();
   const [bgImage, setBgImage] = useState("");
-  var coverImage = "";
 
 
   useEffect(() => {
-    axios.get(configs.book+window.location.pathname.substring(6))
+    axios.get(configs.book+window.location.pathname.substring(1))
       .then(response => {
         setBook(response.data); 
         setLoadingBook(false);
@@ -34,7 +33,7 @@ function App() {
         setLoadingBook(false);
       });
 
-    axios.get(configs.cover+window.location.pathname.substring(6))
+    axios.get(configs.cover+window.location.pathname.substring(1))
       .then(response => {
         setBgImage(response.data);        
         console.log(bgImage.toString);
@@ -56,7 +55,8 @@ function App() {
   }, []);
 
   if (loadingBook || loadingCover) {
-    return <div className="flex items-center justify-center min-h-screen bg-gray-100"><h1 className="text-3xl font-bold text-gray-600">Loading...</h1></div>;
+    return <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold text-gray-600">Loading...</h1></div>;
   }
 
   return (
