@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./Images/86.jpg');
-  background-size: cover;  
+  background-image: url('./Images/library.jpeg');
+  background-size: 100% auto;  
   height: 100%;
   overflow: hidden;
 }
