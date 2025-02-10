@@ -4,7 +4,7 @@ import { BookContext } from '../Context/BookContext';
 
 
 
-function StatusPage () {
+function StatusPage ({teste}) {
     const screenSize = useScreenSize();
     const book = useContext(BookContext);
 
@@ -14,7 +14,7 @@ return (
                   paddingBottom:screenSize.verticalPadding,
                   paddingRight:screenSize.horizontalPadding,
                   paddingLeft:screenSize.horizontalPadding}}>
-
+          <div>Teste {teste}</div>
           <h1> {window.location.pathname.substring(1)}</h1>
           <br/><br/>
           <h2> Screen Status Values:</h2>
@@ -25,6 +25,7 @@ return (
           <div> Vertical Padding = {screenSize.verticalPadding}</div>
           <div> Horizontal Padding = {screenSize.horizontalPadding}</div>
           <div> Char Density = {screenSize.charDensity}    </div>
+
           
     </div>
   )
