@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "react": "^18.3.1",
+    "react-cookie": "^7.2.2",
     "react-dom": "^18.3.1",
     "react-flip-page": "^1.6.4",
     "react-native-google-cast": "^4.8.2",
@@ -16,6 +17,7 @@
     "react-pageflip": "^2.0.3",
     "react-router-dom": "^7.1.4",
     "react-scripts": "5.0.1",
+    "sfcookies": "^1.0.2",
     "styled-components": "^6.1.12",
     "use-sound": "^4.0.3",
     "web-vitals": "^2.1.4"

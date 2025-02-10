@@ -22,7 +22,7 @@ export function ReturnPages(newBook){
     pages.forEach(function(newPage, nidx, narray){
         const lines = newPage.split('(BR)');
         let page = "";
-        const newLine = "\n\n";
+        const newLine = "\n\r \n\n";
 
         let linesSize = lines.size;
     
