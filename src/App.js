@@ -22,6 +22,7 @@ function App() {
   const [loadingBook, setLoadingBook] = useState(true);
   const [loadingCover, setLoadingCover] = useState(true);
   const [loadingFullName, setLoadingFullName] = useState(true);
+  const [loadingStyle, setLoadingStyle] = useState(true);
   const configs = useConfigs();
   const [bgImage, setBgImage] = useState("");
   const [fullName, setFullName] = useState("");
@@ -30,6 +31,9 @@ function App() {
   const pageCookie = 'pageCookie';
   const [bookCode, setBookCode] = useState("");
 
+  const [rightPageCss, setRightPageCss] = useState("rightPage")
+  const [leftPageCss, setLeftPageCss] = useState("leftPage")
+  const [buttonCss, setButtonCss] = useState("appButtonBook")
 
   useEffect(() => {
     axios.get(configs.book+window.location.pathname.substring(1))
@@ -58,6 +62,33 @@ function App() {
         setFullName(response.data);        
         console.log(bgImage.toString);
         setLoadingFullName(false);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+        setLoadingFullName(false);
+      });
+
+      axios.get(configs.style+window.location.pathname.substring(1))
+      .then(response => {
+        switch(response.data){
+          case 1: 
+              setRightPageCss("rightPage");
+              setLeftPageCss("leftPage");
+              setButtonCss("appButtonBook");
+              break;
+          case 2: 
+              setRightPageCss("rightNote");
+              setLeftPageCss("leftNote");
+              setButtonCss("appButtonNote");
+              break;
+          default:
+              setRightPageCss("rightPage");
+              setLeftPageCss("leftPage");
+              setButtonCss("appButtonBook");
+              break;
+        }
+
+        setLoadingStyle(false);
       })
       .catch(error => {
         console.error("Error fetching data:", error);
@@ -92,7 +123,7 @@ function App() {
     
   }, []);
 
-  if (loadingBook || loadingCover || loadingFullName) {
+  if (loadingBook || loadingCover || loadingFullName || loadingStyle) {
     return <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold text-gray-600">Loading...</h1></div>;
   }
@@ -111,7 +142,7 @@ function App() {
           >
         <div className="frontCover"> 
         </div> 
-	      <div className="leftPage">
+	      <div className={leftPageCss}>
         <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
                   paddingTop:screenSize.verticalPadding,
                   paddingBottom:screenSize.verticalPadding,
@@ -129,11 +160,11 @@ function App() {
           <div> Horizontal Padding = {screenSize.horizontalPadding}</div>
           <div> Char Density = {screenSize.charDensity}    </div>  
           <br/>
-          <button class="appButton" onClick={setPage}>Ultima página lida: {currentPage}. Ir para página</button>        
+          <button class={buttonCss} onClick={setPage}>Ultima página lida: {currentPage}. Ir para página</button>        
           </div>
         </div>
        
-        <div className="rightPage"> <img  src={bgImage} style={{
+        <div className={rightPageCss}> <img  src={bgImage} style={{
               width:'90%',
               height:'90%',
               backgroundSize: 'cover',
@@ -148,7 +179,7 @@ function App() {
         { bookPages.map( (page) => {
           pageIndex = pageIndex + 1;
           if(pageIndex%2===0){
-            return <div className="rightPage"> 
+            return <div className={rightPageCss}> 
             <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
               paddingTop:screenSize.verticalPadding,
               paddingBottom:screenSize.verticalPadding,
@@ -156,7 +187,7 @@ function App() {
               paddingLeft:screenSize.horizontalPadding}}>{page}</div></div>
           }
           else{
-            return <div className="leftPage"> 
+            return <div className={leftPageCss}> 
             <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
               paddingTop:screenSize.verticalPadding,
               paddingBottom:screenSize.verticalPadding,

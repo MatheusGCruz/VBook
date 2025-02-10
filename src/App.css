@@ -83,6 +83,28 @@ border-left: 100;
   justify-content: center;
 }
 
+.leftNote{
+  background-image: url('./Images/leftNote.png');
+  background-size: 100% 100%;
+  background-color: darkgreen;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.rightNote{
+background-image: url('./Images/rightNote.png');
+background-size: 100% 100%;
+border-left: 100;
+  border-left-color: black;
+  border-left-width:20;
+  border-radius: 5%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
 .draculaCover{
   background-image: url('');
   background-size: 100% 100%;
@@ -113,7 +135,7 @@ border-left: 100;
   text-align:'justify';
 }
 
-.appButton{
+.appButtonBook{
   text-align: center;
   color: rgb(75, 2, 2);
   background-color: transparent;
@@ -123,5 +145,17 @@ border-left: 100;
   border-radius: 20px;
   font-weight: bold;
   border-color: crimson;
+}
+
+.appButtonNote{
+  text-align: center;
+  color: rgb(2, 26, 63);
+  background-color: transparent;
+  font-size: 1.1em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  margin:2px;
+  border-radius: 20px;
+  font-weight: bold;
+  border-color: rgb(20, 23, 220);
 }
 
