@@ -8,7 +8,9 @@ const useConfigs = () => {
         videos:"https://api.antares.ninja/videos",
         music:"https://api.antares.ninja/music",
         book:"https://api.antares.ninja/book",
-        cover:"https://api.antares.ninja/cover"
+        cover:"https://api.antares.ninja/cover",
+        fullName:"https://api.antares.ninja/fullName",
+        style:"https://api.antares.ninja/style"
   });
 
   return config;
