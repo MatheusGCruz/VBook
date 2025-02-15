@@ -1,13 +1,11 @@
 import './App.css';
-import React, {useEffect, fetchData, useContext, useState, useRef} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 
 
 import HTMLFlipBook  from "react-pageflip";
-import StatusPage from './Pages/StatusPage.jsx';
 import {ReturnPages} from './Files/BookPages';
 import useScreenSize from './Functions/ScreenSize';
-import { BookContext } from './Context/BookContext';
-import { bake_cookie, read_cookie, delete_cookie } from 'sfcookies';
+import { bake_cookie, read_cookie } from 'sfcookies';
 
 import useConfigs from './Functions/Config';
 import axios from "axios";
@@ -28,7 +26,6 @@ function App() {
   const [fullName, setFullName] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const showBook = useRef();
-  const pageCookie = 'pageCookie';
   const [bookCode, setBookCode] = useState("");
 
   const [rightPageCss, setRightPageCss] = useState("rightPage")
@@ -94,7 +91,7 @@ function App() {
         console.error("Error fetching data:", error);
         setLoadingFullName(false);
       });
-  }, []);
+  });
 
   const bookPages = ReturnPages(book);
   const screenSize = useScreenSize();
@@ -174,7 +171,7 @@ function App() {
               paddingTop:screenSize.verticalPadding,
               paddingBottom:screenSize.verticalPadding,
               paddingRight:screenSize.horizontalPadding,
-              paddingLeft:screenSize.horizontalPadding}}/></div>
+              paddingLeft:screenSize.horizontalPadding}} alt="Rigth Page"/></div>
 
         { bookPages.map( (page) => {
           pageIndex = pageIndex + 1;

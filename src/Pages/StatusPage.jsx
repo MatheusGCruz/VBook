@@ -1,12 +1,11 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import useScreenSize from './../Functions/ScreenSize';
-import { BookContext } from '../Context/BookContext';
+
 
 
 
 function StatusPage ({teste}) {
     const screenSize = useScreenSize();
-    const book = useContext(BookContext);
 
 return (
     <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
