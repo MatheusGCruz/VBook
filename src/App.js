@@ -17,6 +17,7 @@ export const UserContext = React.createContext(null);
 function App() {
 
   const [book, setBook] = useState([]);
+  const [index, setIndex] = useState(false);
   const [loadingBook, setLoadingBook] = useState(true);
   const [loadingCover, setLoadingCover] = useState(true);
   const [loadingFullName, setLoadingFullName] = useState(true);
@@ -27,13 +28,16 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const showBook = useRef();
   const [bookCode, setBookCode] = useState("");
+  const [bookList, setBookList] = useState([]);
 
   const [rightPageCss, setRightPageCss] = useState("rightPage")
   const [leftPageCss, setLeftPageCss] = useState("leftPage")
   const [buttonCss, setButtonCss] = useState("appButtonBook")
 
+
   useEffect(() => {
-    axios.get(configs.book+window.location.pathname.substring(1))
+    if(window.location.pathname.substring(1) !== ""){
+      axios.get(configs.book+window.location.pathname.substring(1))
       .then(response => {
         setBook(response.data); 
         setLoadingBook(false);
@@ -91,7 +95,19 @@ function App() {
         console.error("Error fetching data:", error);
         setLoadingFullName(false);
       });
-  });
+    }
+    else{
+      axios.get("https://api.antares.ninja/bookList")
+      .then(response => {
+        setBookList(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching menu items:", error);
+      });
+      setIndex(true);
+    }
+
+  }, [configs.book, configs.cover, configs.fullName, configs.style, bgImage.toString]);
 
   const bookPages = ReturnPages(book);
   const screenSize = useScreenSize();
@@ -121,9 +137,71 @@ function App() {
   }, []);
 
   if (loadingBook || loadingCover || loadingFullName || loadingStyle) {
+    if(index){
+      return (    <div className="App">
+        <HTMLFlipBook         
+            width={screenSize.width} 
+            height={screenSize.height}
+            clickEventForward='false'
+            isUserTouch='false'
+            showCover='true'
+            onInit={bookInit}
+            onFlip={(e) => bookFlip(e.data)}
+            ref={showBook}      
+            >
+          <div className="frontCover"> 
+          </div> 
+          <div className={leftPageCss}>
+          <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
+                    paddingTop:screenSize.verticalPadding,
+                    paddingBottom:screenSize.verticalPadding,
+                    paddingRight:screenSize.horizontalPadding,
+                    paddingLeft:screenSize.horizontalPadding}}>
+    
+            <h1> {fullName}</h1>
+            <br/><br/>
+            <h2> Screen Status Values:</h2>
+            <br/>
+            <div> Width = {screenSize.width}          </div>
+            <div> Height = {screenSize.height}          </div>
+            <div> Font = {screenSize.font}</div>
+            <div> Vertical Padding = {screenSize.verticalPadding}</div>
+            <div> Horizontal Padding = {screenSize.horizontalPadding}</div>
+            <div> Char Density = {screenSize.charDensity}    </div>  
+            <br/>
+            <button class={buttonCss} onClick={setPage}>Ultima página lida: {currentPage}. Ir para página</button>        
+            </div>
+          </div>
+         
+          <div className={rightPageCss}> 
+          <div style={{fontSize:screenSize.font, margin:screenSize.verticalPadding, textAlign:'justify', 
+                    paddingTop:screenSize.verticalPadding,
+                    paddingBottom:screenSize.verticalPadding,
+                    paddingRight:screenSize.horizontalPadding,
+                    paddingLeft:screenSize.horizontalPadding}}>
+    
+            <h1> {fullName}</h1>
+            <br/><br/>
+            <h2> Screen Status Values:</h2>
+            {bookList.map((item, index) => (
+              <div key={index} className="menu-item">
+                {<button class={buttonCss} onClick={() => window.location.href ="/"+item.vbookName}>Livro: {item.vbookFullName}</button>}
+              </div>
+            ))}
+   
+            </div>
+          </div>
+    
+
+          <div className="backCover"> BackCover </div>
+    
+        </HTMLFlipBook>
+      </div> )
+    }
     return <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold text-gray-600">Loading...</h1></div>;
   }
+
 
   return (
     <div className="App">
