@@ -97,7 +97,7 @@ function App() {
       });
     }
     else{
-      axios.get("https://api.antares.ninja/bookList")
+      axios.get(configs.bookList)
       .then(response => {
         setBookList(response.data);
       })
@@ -147,7 +147,8 @@ function App() {
             showCover='true'
             onInit={bookInit}
             onFlip={(e) => bookFlip(e.data)}
-            ref={showBook}      
+            ref={showBook}    
+            usePortrait={screenSize.isPortrait} 
             >
           <div className="frontCover"> 
           </div> 
@@ -213,7 +214,8 @@ function App() {
           showCover='true'
           onInit={bookInit}
           onFlip={(e) => bookFlip(e.data)}
-          ref={showBook}      
+          ref={showBook}     
+          usePortrait={screenSize.isPortrait} 
           >
         <div className="frontCover"> 
         </div> 
