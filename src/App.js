@@ -107,7 +107,7 @@ function App() {
       setIndex(true);
     }
 
-  }, [configs.book, configs.cover, configs.fullName, configs.style, bgImage.toString]);
+  }, [configs.book, configs.cover, configs.fullName, configs.style,configs.bookList, bgImage.toString]);
 
   const bookPages = ReturnPages(book);
   const screenSize = useScreenSize();
