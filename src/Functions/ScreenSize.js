@@ -7,7 +7,8 @@ const useScreenSize = () => {
     font: .02*window.innerHeight,
     verticalPadding: .02*window.innerHeight,
     horizontalPadding: window.innerWidth>window.innerHeight?.07*window.innerHeight:.03*window.innerHeight,
-    charDensity:window.innerWidth>window.innerHeight?0.5*window.innerWidth:2.5*window.innerWidth
+    charDensity:window.innerWidth>window.innerHeight?0.5*window.innerWidth:2.5*window.innerWidth,
+    isPortrait:window.innerHeight>window.innerWidth
   });
 
   useEffect(() => {
